@@ -33,6 +33,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/short-url', [ShortUrlController::class, 'create'])->name('short-url.create');
 });
 
-Route::get('short/{short_url}', [ShortUrlController::class, 'show'])->name('short-url.show');
+//Route::get('short/{short_url}', [ShortUrlController::class, 'show'])->name('short-url.show');
+
+\AshAllenDesign\ShortURL\Facades\ShortURL::routes();
 
 require __DIR__ . '/auth.php';

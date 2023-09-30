@@ -73,6 +73,9 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('short-url.create')" :active="request()->routeIs('short-url.create')">
+                {{ __('Short Url') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
