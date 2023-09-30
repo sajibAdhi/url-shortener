@@ -10,4 +10,14 @@ class ShortUrlController extends Controller
     {
         return view('short-url.create');
     }
+
+    public function show(string $short_url): \Illuminate\Http\RedirectResponse
+    {
+        $builder = new \AshAllenDesign\ShortURL\Classes\Builder();
+
+        $shortURLObject = $builder->shortURL($short_url)->find();
+
+        return redirect()->away($shortURLObject->destination_url);
+
+    }
 }

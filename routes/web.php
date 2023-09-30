@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShortUrlController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/short-url', [ShortUrlController::class, 'create'])->name('short-url.create');
+});
+
+Route::get('short/{short_url}', [ShortUrlController::class, 'show'])->name('short-url.show');
+
+require __DIR__ . '/auth.php';
