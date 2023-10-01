@@ -2,7 +2,6 @@
 
 namespace App\Livewire\ShortUrl;
 
-use AshAllenDesign\ShortURL\Exceptions\ShortURLException;
 use AshAllenDesign\ShortURL\Facades\ShortURL;
 use Illuminate\View\View;
 use Livewire\Attributes\Rule;
@@ -24,6 +23,8 @@ class Create extends Component
         $validated = $this->validate();
 
         $shortURLObject = ShortURL::destinationURL($validated['url'])->secure(false)->make();
+        $shortURLObject->user_id = auth()->user()->id;
+        $shortURLObject->save();
         $this->shortUrl = $shortURLObject->default_short_url;
 
         $this->url = '';

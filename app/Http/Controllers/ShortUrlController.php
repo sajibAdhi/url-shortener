@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ShortUrlController extends Controller
 {
-    public function create(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
+    public function __invoke(): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory
     {
         return view('short-url');
     }
 
-    public function show(string $short_url): \Illuminate\Http\RedirectResponse
-    {
-        $builder = new \AshAllenDesign\ShortURL\Classes\Builder();
-
-        $shortURLObject = $builder->urlKey($short_url)->find();
-
-        return redirect()->away($shortURLObject->destination_url);
-
-    }
 }
